@@ -131,8 +131,8 @@ def format_payload(payload, local_host, local_port):
     if payload == -1:
         result = []
         for i in range(0, len(payloads)):
-            result.append(payloads[i].replace('{local_host}', local_host).replace('{local_port}', local_port))
-        return '\n\n'.join(result)
+            result.append(payloads[i].replace('{local_host}', local_host).replace('{local_port}', local_port).replace('\n',''))
+        return '\n'.join(result)
 
 
     return payloads[payload].replace('{local_host}', local_host).replace('{local_port}', local_port)
