@@ -38,4 +38,5 @@ options:
                         14 - Lua (Windows and Linux)
                         15 - Node.js sh
                         16 - Node.js bash
+                        17 - Java deserialization bash
 ```
