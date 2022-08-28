@@ -39,4 +39,5 @@ options:
                         15 - Node.js sh
                         16 - Node.js bash
                         17 - Java deserialization bash
+                        18 - Perl sh
 ```
